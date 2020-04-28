@@ -39,6 +39,8 @@ using MusicXML
 lg = Systems.logistic()
 tr = trajectory(lg, 99)
 
+# tr = rand(Float64, 100)
+
 # plot(1:101, tr)
 
 ##########################################################################
