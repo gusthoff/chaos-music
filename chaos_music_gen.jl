@@ -95,7 +95,7 @@ for (i, j) in enumerate(tr)
             global first = false
         else
             push!(measures_piano,
-                Measure(notes = measure1_notes_piano))
+                  Measure(notes = measure1_notes_piano))
         end
         global measure1_notes_piano = Note[]
     end
@@ -106,12 +106,12 @@ end
 if length(measure1_notes_piano) > 0
     if first
         push!(measures_piano,
-                Measure(attributes = attributes1_piano,
-                        notes = measure1_notes_piano))
+              Measure(attributes = attributes1_piano,
+                      notes = measure1_notes_piano))
         global first = false
     else
         push!(measures_piano,
-            Measure(notes = measure1_notes_piano))
+              Measure(notes = measure1_notes_piano))
     end
 end
 
