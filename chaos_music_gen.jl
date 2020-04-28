@@ -37,7 +37,7 @@ using MusicXML
 ##########################################################################
 
 lg = Systems.logistic()
-tr = trajectory(lg, 100)
+tr = trajectory(lg, 99)
 
 # plot(1:101, tr)
 
