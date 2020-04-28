@@ -73,23 +73,49 @@ attributes1_piano = Attributes(
 
 notes = ["C", "D", "E", "F", "G", "A", "B", "C"]
 
-measure1_notes_piano = [Note(rest = Rest(), duration =  4)]
-# measure1_notes_piano = []
+measures_piano = Measure[]
+measure1_notes_piano = Note[]
+
+first = true
 
 for (i, j) in enumerate(tr)
     curr_note = notes[round(Int, j*length(notes) + 0.5)]
     push!(measure1_notes_piano,
           Note(pitch = Pitch(step = curr_note, alter = 0, octave = 4),
                duration = 4))
+
+    # Add measure if complete
+    if i % 4 == 0
+        if first
+            push!(measures_piano,
+                  Measure(attributes = attributes1_piano,
+                          notes = measure1_notes_piano))
+            global first = false
+        else
+            push!(measures_piano,
+                Measure(notes = measure1_notes_piano))
+        end
+        global measure1_notes_piano = Note[]
+    end
+end
+
+# Add remaining notes to measure
+
+if length(measure1_notes_piano) > 0
+    if first
+        push!(measures_piano,
+                Measure(attributes = attributes1_piano,
+                        notes = measure1_notes_piano))
+        global first = false
+    else
+        push!(measures_piano,
+            Measure(notes = measure1_notes_piano))
+    end
 end
 
 ##########################################################################
 # MusicXML file: write output file
 ##########################################################################
-
-measures_piano = [
-    Measure(attributes = attributes1_piano, notes = measure1_notes_piano)
-]
 
 part_piano = Part(measures = measures_piano, id = "P1")
 
